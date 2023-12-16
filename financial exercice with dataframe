@@ -1,0 +1,44 @@
+#concatenation in finance
+Import pandas as pd
+# DataFrames representing stock prices for two consecutive years
+df_2022 = pd . DataFrame ({
+’Date ’: [’2022 -12 -29 ’, ’2022 -12 -30 ’],
+’Stock ’: [’AAPL ’, ’AAPL ’],
+’Close ’: [175 , 180 ]
+})
+df_2023 = pd . DataFrame ({
+’Date ’: [’2023 -01 -02 ’, ’2023 -01 -03 ’],
+’Stock ’: [’AAPL ’, ’AAPL ’],
+’Close ’: [178 , 182 ]
+})
+# Concatenate the DataFrames vertically to continue the series
+prices_combined = pd . concat ([ df_2022 , df_2023 ], axis =0)
+
+
+# we group the dataframe with the symbol Column by using pandas
+
+import pandas as pd
+# Sample data : Trades of different stocks on different days
+data = {’Symbol ’: [’AAPL ’, ’MSFT ’, ’GOOG ’, ’AAPL ’, ’GOOG ’, ’MSFT ’],
+’Date ’: [’2023 -01 -01 ’, ’2023 -01 -01 ’, ’2023 -01 -01 ’,
+’2023 -01 -02 ’, ’2023 -01 -02 ’, ’2023 -01 -02 ’],
+’Volume ’: [100 , 150 , 200 , 90 , 120 , 160 ]}
+trades = pd . DataFrame ( data )
+# Group by the ’ Symbol ’ column
+grouped = trades . groupby (’Symbol ’)
+
+# exercice joining financial time serie data 
+import pandas as pd
+
+df_stock = pd.DataFrame({
+    'Date': pd.to_datetime(['2023-01-01', '2023-01-02']),
+    'Stock': ['AAPL', 'AAPL'],
+    'Close': [150, 155]
+}).set_index('Date')
+df_rate = pd.DataFrame({
+    'Date': pd.to_datetime(['2023-01-02', '2023-01-03']),
+    'Interest_Rate': [1.5, 1.75]
+}).set_index('Date')
+joined_financial_data = df_stock.join(df_rate, how='outer')
+
+
