@@ -1,0 +1,74 @@
+# Mechanisme d'éxecptions, code d'essaie donner par le professuer en guise d'explication de comment cela se presente
+
+try :
+bloc_try
+except (Exception_1_1, ..., Exception_1_m) :
+bloc_except_1
+...
+except (Exception_n_1, ... Exception_n_p) :
+bloc_except_n
+else :
+bloc_else
+finally :
+bloc_finally
+
+# exemple du méchanisme d'exception en dessous appliqué
+
+try:
+print('Début try !')
+age = int(input('Votre âge : '))
+print('Fin try !')
+except Exception:
+print('L\'âge a été corrigé !')
+age = 20
+print(f'L\'âge = {age} ans.')
+try:
+print('Début try !')
+age = int(input('Votre âge : '))
+print('Fin try !')
+except ValueError:
+age = 20
+print('L\'âge a été corrigé !')
+else:
+print('Pas d\'exception !')
+print(f'L\'âge = {age} ans.')      # avec ce code normalement on a une corrction de 'age à la fin
+
+# un autre exemple fait
+
+try:
+print('Début try !')
+age = int(input('Votre âge : '))
+print('Fin try !')
+except ValueError as ve:
+print('Avant correction :', ve)
+age = 20
+print('L\'âge a été corrigé !')
+else:
+print('Pas d\'exception !')
+print(f'L\'âge = {age} ans.')
+
+# création et lancement d'une exception
+
+def corriger_temp_abs(temp):
+try:
+if temp < 0:
+raise Exception('Temp KO !')
+print('Pas de problème !')
+except :
+if temp > - 273:
+temp = 273 + temp
+print('Traitement local !')
+return temp
+print('Délégation !')
+raise
+print('Après raise !')
+else:
+print('Pas d\'exception !')
+return temp
+finally:
+print('Toujours exécuté !')
+print(corriger_temp_abs(20))
+print('*' * 20)
+print(corriger_temp_abs(-100))
+print('*' * 20)
+print(corriger_temp_abs(-500))
